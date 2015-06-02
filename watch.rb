@@ -26,7 +26,7 @@ class WatchCLI < Thor
     get_repos().each do |repo|
       if !subscriptions.include?(repo.full_name) and /#{regex}/.match(repo.full_name)
         puts "Subscribing to #{repo.full_name}..."
-        get_octokit().update_subscription(repo.full_name, {subscribed: true}) 
+        get_octokit().update_subscription(repo.full_name, {subscribed: true})
       end
     end
   end
@@ -35,8 +35,10 @@ class WatchCLI < Thor
   def unwatch(regex)
     subscriptions = get_subscriptions()
     get_repos().each do |repo|
-      puts "Unsubscribing from #{repo.full_name}..."
-      get_octokit().update_subscription(repo.full_name, {subscribed: false}) if subscriptions.include?(repo.full_name) and /#{regex}/.match(repo.full_name)
+      if subscriptions.include?(repo.full_name) and /#{regex}/.match(repo.full_name)
+        puts "Unsubscribing from #{repo.full_name}..."
+        get_octokit().delete_subscription(repo.full_name)
+      end
     end
   end
 
@@ -53,9 +55,9 @@ class WatchCLI < Thor
 
     def get_repos
       client = get_octokit
-      
+
       repos = client.repositories(client.user.login)
-      
+
       orgs = client.organizations()
       orgs.each do |org|
         client.organization_repositories(org.login).each do |repo|

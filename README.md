@@ -17,6 +17,17 @@ This project is a small helper for mass-watching / unwatching in GitHub reposito
 # bundle install
 [...]
 
+# ruby watch.rb help
+Commands:
+  watch.rb help [COMMAND]   # Describe available commands or one specific command
+  watch.rb list <regex>     # lists all repos, useful to test your watch regex
+  watch.rb unwatch <regex>  # unwatch all repos matching your regex
+  watch.rb watch <regex>    # watch all repos matching your regex
+  watch.rb watched <regex>  # show all watched repos, useful to test your unwatch regex
+
+Options:
+  [--token=TOKEN]
+
 # ruby watch.rb list --token=<mytoken>
 Luzifer/alarmclock
 Luzifer/alfred-fold
@@ -25,14 +36,11 @@ Luzifer/AMZWishlist
 Luzifer/awsenv
 [...]
 
-# ruby watch.rb watch '^Luzifer/.*' --token=<mytoken>
-Subscribing to Luzifer/blog.knut.me...
-Subscribing to Luzifer/go-selfupdate...
-Subscribing to Luzifer/golang-builder...
-Subscribing to Luzifer/habitrpg...
-Subscribing to Luzifer/homebrew...
-Subscribing to Luzifer/homebrew-tools...
-Subscribing to Luzifer/license...
-Subscribing to Luzifer/radiopi...
-Subscribing to Luzifer/simpleproxy...
+# ruby watch.rb list '^Luzifer/alfred-.*' --token=<mytoken>
+Luzifer/alfred-fold
+Luzifer/alfred-pwdgen
+
+# ruby watch.rb watch '^Luzifer/alfred-.*' --token=<mytoken>
+Subscribing to Luzifer/alfred-fold...
+Subscribing to Luzifer/alfred-pwdgen...
 ```
