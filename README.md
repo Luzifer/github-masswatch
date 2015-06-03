@@ -44,3 +44,23 @@ Luzifer/alfred-pwdgen
 Subscribing to Luzifer/alfred-fold...
 Subscribing to Luzifer/alfred-pwdgen...
 ```
+
+## Advanced: Auto-Watch repos using Jenkins
+
+Given you have a running Jenkins instance you either can let it clone this repository and put your watch commands into the build-script or if your Jenkins does not understand Ruby but is able to execute Docker containers you could use this script to auto-watch repositories:
+
+```bash
+#!/bin/bash
+
+GHTOKEN=<mytoken>
+
+echo "cd /scripts/" > ./build.sh
+echo "bundle install" >> ./build.sh
+echo "bundle exec ruby watch.rb watch '^YourOrg/someprefix' --token=$GHTOKEN" >> ./build.sh
+echo "bundle exec ruby watch.rb watch '^Luzifer/' --token=$GHTOKEN" >> ./build.sh
+
+docker pull ruby:2.1
+docker run --rm -v ${PWD}:/scripts ruby:2.1 bash /scripts/build.sh
+```
+
+For this you also let Jenkins clone this repository and then put that script into the build commands. The tool will now run in a ruby container which is disposed afterwards.
