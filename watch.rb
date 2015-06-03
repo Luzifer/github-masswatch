@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require "Octokit"
+require "octokit"
 require "thor"
 
 class WatchCLI < Thor
