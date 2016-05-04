@@ -64,3 +64,11 @@ docker run --rm -v ${PWD}:/scripts ruby:2.1 bash /scripts/build.sh
 ```
 
 For this you also let Jenkins clone this repository and then put that script into the build commands. The tool will now run in a ruby container which is disposed afterwards.
+
+## Docker support
+
+Besides using your local ruby installation you can also run the watch command in
+a Docker container like this:
+```bash
+docker run --rm -it Luzifer/github-masswatch [COMMAND]
+```
