@@ -70,5 +70,5 @@ For this you also let Jenkins clone this repository and then put that script int
 Besides using your local ruby installation you can also run the watch command in
 a Docker container like this:
 ```bash
-docker run --rm -it Luzifer/github-masswatch [COMMAND]
+docker run --rm -it quay.io/luzifer/github-masswatch [COMMAND]
 ```
